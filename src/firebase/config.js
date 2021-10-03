@@ -1,20 +1,20 @@
 import * as firebase from 'firebase'
-import "firebase/auth"
-import "firebase/firestore"
-import "firebase/storage"
+import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAZwBnrty-mv0YOcyQQROxVwCumS2lpTu8",
-  authDomain: "reactnative-expo-boilerplate.firebaseapp.com",
-  projectId: "reactnative-expo-boilerplate",
-  storageBucket: "reactnative-expo-boilerplate.appspot.com",
-  messagingSenderId: "800782233378",
-  appId: "1:800782233378:web:79d50721f6d0ce10cc7f7b",
-  measurementId: "G-2JV5SBQ1ZP"
-};
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  apiKey: 'AIzaSyBz-bO-aXEZ8rQ3-97MefxrWJVmvVOQ-LQ',
+  authDomain: 'cultivation-church-d4563.firebaseapp.com',
+  projectId: 'cultivation-church-d4563',
+  storageBucket: 'cultivation-church-d4563.appspot.com',
+  messagingSenderId: '970505330631',
+  appId: '1:970505330631:web:1dcd4c39e5b68ca14583e2',
+  measurementId: 'G-9J293V1741',
 }
 
-export { firebase };
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+}
+
+export { firebase }

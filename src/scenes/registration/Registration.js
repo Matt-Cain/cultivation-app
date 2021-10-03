@@ -1,5 +1,12 @@
 import React, { useState, useContext } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-native'
+import {
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Linking,
+} from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
@@ -37,23 +44,23 @@ export default function Registration() {
           id: uid,
           email,
           fullName,
-          avatar: 'https://firebasestorage.googleapis.com/v0/b/reactnative-expo-boilerplate.appspot.com/o/icon.png?alt=media&token=7f2812b7-e1d9-48e3-9720-e79d6650cea5',
-        };
+          avatar:
+            'https://firebasestorage.googleapis.com/v0/b/reactnative-expo-boilerplate.appspot.com/o/icon.png?alt=media&token=7f2812b7-e1d9-48e3-9720-e79d6650cea5',
+        }
         const usersRef = firebase.firestore().collection('users')
         usersRef
           .doc(uid)
           .set(data)
-          .then(() => {
-          })
+          .then(() => {})
           .catch((error) => {
             setSpinner(false)
             alert(error)
-          });
+          })
       })
       .catch((error) => {
         setSpinner(false)
         alert(error)
-    });
+      })
   }
 
   return (
@@ -65,11 +72,18 @@ export default function Registration() {
       >
         <Image
           style={styles.logo}
-          source={require('../../../assets/icon.png')}
+          source={require('../../../assets/images/logo-sm.png')}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
-          placeholder='Your Name'
+          style={[
+            styles.input,
+            {
+              backgroundColor:
+                scheme === 'dark' ? colors.darkInput : colors.white,
+              color: scheme === 'dark' ? colors.white : colors.primaryText,
+            },
+          ]}
+          placeholder="Your Name"
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setFullName(text)}
           value={fullName}
@@ -77,8 +91,15 @@ export default function Registration() {
           autoCapitalize="none"
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
-          placeholder='E-mail'
+          style={[
+            styles.input,
+            {
+              backgroundColor:
+                scheme === 'dark' ? colors.darkInput : colors.white,
+              color: scheme === 'dark' ? colors.white : colors.primaryText,
+            },
+          ]}
+          placeholder="E-mail"
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setEmail(text)}
           value={email}
@@ -87,38 +108,72 @@ export default function Registration() {
           keyboardType={'email-address'}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor:
+                scheme === 'dark' ? colors.darkInput : colors.white,
+              color: scheme === 'dark' ? colors.white : colors.primaryText,
+            },
+          ]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
-          placeholder='Password'
+          placeholder="Password"
           onChangeText={(text) => setPassword(text)}
           value={password}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor:
+                scheme === 'dark' ? colors.darkInput : colors.white,
+              color: scheme === 'dark' ? colors.white : colors.primaryText,
+            },
+          ]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
-          placeholder='Confirm Password'
+          placeholder="Confirm Password"
           onChangeText={(text) => setConfirmPassword(text)}
           value={confirmPassword}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.primary}]}
-          onPress={() => onRegisterPress()}>
+          style={[styles.button, { backgroundColor: colors.primary }]}
+          onPress={() => onRegisterPress()}
+        >
           <Text style={styles.buttonText}>Agree and Create account</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text style={[styles.footerText, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+          <Text
+            style={[
+              styles.footerText,
+              { color: scheme === 'dark' ? colors.white : colors.primaryText },
+            ]}
+          >
+            Already got an account?{' '}
+            <Text onPress={onFooterLinkPress} style={styles.footerLink}>
+              Log in
+            </Text>
+          </Text>
         </View>
-        <Text style={styles.link} onPress={ ()=>{ Linking.openURL('https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2')}}>Require agree EULA</Text>
+        <Text
+          style={styles.link}
+          onPress={() => {
+            Linking.openURL(
+              'https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2',
+            )
+          }}
+        >
+          Require agree EULA
+        </Text>
       </KeyboardAwareScrollView>
       <Spinner
         visible={spinner}
-        textStyle={{ color: "#fff" }}
+        textStyle={{ color: '#fff' }}
         overlayColor="rgba(0,0,0,0.5)"
       />
     </View>

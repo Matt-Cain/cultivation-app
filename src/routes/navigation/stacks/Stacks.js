@@ -26,15 +26,9 @@ const Stack = createStackNavigator()
 export const LoginNavigator = () => {
   const { navigationProps } = useContext(ColorSchemeContext)
   return (
-    <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-      />
-      <Stack.Screen
-        name="Registration"
-        component={Registration}
-      />
+    <Stack.Navigator headerMode="none" screenOptions={navigationProps}>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Registration" component={Registration} />
     </Stack.Navigator>
   )
 }
@@ -52,17 +46,14 @@ export const HomeNavigator = () => {
       <HomeTitleContext.Consumer>
         {(ctx) => (
           <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
-            <Stack.Screen
-              name="Home"
-              component={Home}
-            />
+            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen
               name="Detail"
               component={Detail}
               options={{ title: ctx.title }}
             />
           </Stack.Navigator>
-      )}
+        )}
       </HomeTitleContext.Consumer>
     </HomeTitleContext.Provider>
   )
@@ -72,14 +63,8 @@ export const ProfileNavigator = () => {
   const { navigationProps } = useContext(ColorSchemeContext)
   return (
     <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-      />
-      <Stack.Screen
-        name="Edit"
-        component={Edit}
-      />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Edit" component={Edit} />
     </Stack.Navigator>
   )
 }

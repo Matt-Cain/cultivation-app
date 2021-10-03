@@ -32,6 +32,8 @@ export default function Home() {
     alert('Tapped header button')
   }
 
+   
+
   useEffect(() => {
     firebase.firestore()
       .collection('tokens')

@@ -9,8 +9,12 @@ import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { decode, encode } from 'base-64'
-if (!global.btoa) { global.btoa = encode }
-if (!global.atob) { global.atob = decode }
+if (!global.btoa) {
+  global.btoa = encode
+}
+if (!global.atob) {
+  global.atob = decode
+}
 
 import { LoginNavigator } from './stacks'
 import TabNavigator from './tabs'
@@ -22,7 +26,7 @@ Notifications.setNotificationHandler({
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),
-});
+})
 
 export default function App() {
   const colorScheme = useColorScheme()
@@ -33,8 +37,8 @@ export default function App() {
 
   const navigationCurrentProps = {
     headerTintColor: 'white',
-    headerStyle: { 
-      backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple
+    headerStyle: {
+      backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple,
     },
     headerTitleStyle: { fontSize: 18 },
   }
@@ -42,54 +46,55 @@ export default function App() {
   useEffect(() => {
     setScheme(colorScheme)
     setNavigationProps(navigationCurrentProps)
-  }, [colorScheme]);
+  }, [colorScheme])
 
   useEffect(() => {
-    const usersRef = firebase.firestore().collection('users');
-    firebase.auth().onAuthStateChanged(user => {
+    const usersRef = firebase.firestore().collection('users')
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        usersRef
-          .doc(user.uid)
-          .onSnapshot(function(document) {
-            const userData = document.data()
-            setLoading(false)
-            setUserData(userData)
-          })
+        usersRef.doc(user.uid).onSnapshot(function (document) {
+          const userData = document.data()
+          setLoading(false)
+          setUserData(userData)
+        })
       } else {
         setLoading(false)
       }
-    });
-  }, []);
-
-  (async () => {
+    })
+  }, [])
+  ;(async () => {
     const { status: existingStatus } = await Notifications.getPermissionsAsync()
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+    let finalStatus = existingStatus
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync()
+      finalStatus = status
     }
-    if (finalStatus !== "granted") {
-      return;
+    if (finalStatus !== 'granted') {
+      return
     }
-    const token = await Notifications.getExpoPushTokenAsync();
-    await firebase.firestore().collection("tokens").doc(userData.id).set({ token: token.data, id: userData.id })
-  })();
+    const token = await Notifications.getExpoPushTokenAsync()
+    await firebase
+      .firestore()
+      .collection('tokens')
+      .doc(userData.id)
+      .set({ token: token.data, id: userData.id })
+  })()
 
   if (loading) {
-    return (
-      <></>
-    )
+    return <></>
   }
 
   return (
-    <ColorSchemeContext.Provider value={{scheme, navigationProps}}>
-      <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        { userData ? (
-          <UserDataContext.Provider value={{userData, setUserData}}>
-            <TabNavigator/>
+    <ColorSchemeContext.Provider value={{ scheme, navigationProps }}>
+      <NavigationContainer
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
+        {userData ? (
+          <UserDataContext.Provider value={{ userData, setUserData }}>
+            <TabNavigator />
           </UserDataContext.Provider>
-          ) : (
-          <LoginNavigator/>
+        ) : (
+          <LoginNavigator />
         )}
       </NavigationContainer>
     </ColorSchemeContext.Provider>
