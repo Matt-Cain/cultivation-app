@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "cultivation-app",
-    "slug": "cultivation-app",
+    "name": "Cultivation",
+    "slug": "Cultivation",
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Icon_Logo_Filled.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",

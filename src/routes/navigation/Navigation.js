@@ -38,7 +38,7 @@ export default function App() {
   const navigationCurrentProps = {
     headerTintColor: 'white',
     headerStyle: {
-      backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple,
+      backgroundColor: colors.dark,
     },
     headerTitleStyle: { fontSize: 18 },
   }
@@ -87,7 +87,8 @@ export default function App() {
   return (
     <ColorSchemeContext.Provider value={{ scheme, navigationProps }}>
       <NavigationContainer
-        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        theme={DarkTheme}
       >
         {userData ? (
           <UserDataContext.Provider value={{ userData, setUserData }}>

@@ -9,9 +9,9 @@ const colors = {
   primary: '#788eec',
   secondary: '#dc143c',
   white: '#ffffff',
-  darkInput: '#303030',
+  darkInput: 'black',
   primaryText: '#2e2e2d',
-  lightyellow: '#ffffe0'
+  lightyellow: '#ffffe0',
 }
 
 export default colors
